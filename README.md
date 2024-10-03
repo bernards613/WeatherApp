@@ -41,7 +41,7 @@ public class WeatherApp {
                 String location = locationField.getText();
                 if (!location.isEmpty()) {
                     // Here you'll call the API with the location
-                    JOptionPane.showMessageDialog(frame, "Fetching weather for: " + location);
+                    JOptionPane.showMessageDialog(frame, "Fetching weather for: " + location); //Have to determine if we are doing coords or city
                 } else {
                     JOptionPane.showMessageDialog(frame, "Please enter a location.");
                 }
