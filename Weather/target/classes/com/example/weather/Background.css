@@ -1,0 +1,28 @@
+.root{
+-fx-background-color: #111111;
+}
+
+.label{
+-fx-min-width: 20;
+-fx-font-family: "Times New Roman";
+-fx-text-fill: "White";
+-fx-alignment: center;
+}
+.button{
+-fx-pref-width:100px;
+-fx-background-color: White;
+-fx-text-fill: Grey;
+-fx-border-radius:25px;
+}
+
+.line{
+-fx-background-color: White;
+-fx-text-fill: White;
+}
+
+
+
+#titleLabel{
+-fx-font-size:20;
+-fx-alignment: center;
+}
