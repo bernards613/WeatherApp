@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -106,13 +107,14 @@ String store;
 
 public void getlistofthings(String location) {
     store = location;
-
+    
     // Coordinates for city
     double latitude = 0, longitude = 0;
 	String coordinateCall = coordCall(store);
 	 if (!coordinateCall.startsWith("Error")) {
          try {
         	 JSONObject jsonResponse = new JSONObject(coordinateCall);
+        	 if (jsonResponse.has("results")) {
         	 JSONArray coords = jsonResponse.getJSONArray("results");
         	 if(coords.length() > 0 ) {
         	 
@@ -124,7 +126,20 @@ public void getlistofthings(String location) {
         	 }
         	 else
         		 System.out.println("No results found");
-         }  catch (Exception e) {
+        	 return;
+         } else {
+        	 System.out.println("Invalid Location");
+        	 ///SET IT BACK TO FIRST PAGE HERE
+        	 return;
+         }
+         }
+         
+         catch(JSONException e) {
+          	System.out.println("Invalid Location");
+          	e.printStackTrace();
+          	return;
+           }
+         catch (Exception e) {
              e.printStackTrace();
              temp.setText("Error fetching temperature.");
              speed.setText("Error fetching wind speed.");
@@ -177,9 +192,10 @@ public void getlistofthings(String location) {
         Precipitation.setText("Unable to fetch precipitation chance.");
     }
 
+    
     // Set static labels
     currently.setText("Currently");
-    type.setText("Weather in " + location + " is:");
+    type.setText("Weather in " + HelloController.getLocation() + " is:");
     chance.setText("Chance of Rain:");  // Update with actual data if available
     Date.setText("Date: " + java.time.LocalDate.now().toString());  // Display current date
     loc.setText(location);

@@ -16,6 +16,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Second {
@@ -85,6 +86,7 @@ String string;
     	 if (!coordinateCall.startsWith("Error")) {
              try {
             	 JSONObject jsonResponse = new JSONObject(coordinateCall);
+            	 
             	 JSONArray coords = jsonResponse.getJSONArray("results");
             	 if(coords.length() > 0 ) {
             	 
@@ -96,7 +98,10 @@ String string;
             	 }
             	 else
             		 System.out.println("No results found");
-             }
+             }catch(JSONException e) {
+             	System.out.println("Invalid Location");
+             	e.printStackTrace();
+              }
              catch (Exception e) {
                  e.printStackTrace();
                  temp1.setText("Error");
@@ -114,6 +119,7 @@ String string;
                  prec6.setText("Error");
                  prec7.setText("Error");
              }
+             
         String WeeklyWeatherData = fetchWeeklyWeatherData(latitude, longitude);
         if (!WeeklyWeatherData.startsWith("Error")) {
             try {
