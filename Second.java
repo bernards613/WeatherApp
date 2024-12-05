@@ -111,6 +111,13 @@ String string;
                 temp5.setText("Error");
                 temp6.setText("Error");
                 temp7.setText("Error");
+                 prec1.setText("Error");
+                prec2.setText("Error");
+                prec3.setText("Error");
+                prec4.setText("Error");
+                prec5.setText("Error");
+                prec6.setText("Error");
+                prec7.setText("Error");
             }
         }
     }
